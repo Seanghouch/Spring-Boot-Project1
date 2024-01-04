@@ -1,0 +1,9 @@
+version: '1.0'
+
+services:
+
+  app:
+    image: spring-boot-docker.jar
+    ports:
+      - 8181:8080
+    restart: always
