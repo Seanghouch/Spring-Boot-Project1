@@ -1,4 +1,4 @@
-package com.example.security.productdetail;
+package com.example.security.source.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

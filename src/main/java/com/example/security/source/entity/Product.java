@@ -1,4 +1,4 @@
-package com.example.security.product;
+package com.example.security.source.entity;
 
 import com.example.security.core.BaseEntity;
 import jakarta.persistence.*;

@@ -1,5 +1,6 @@
-package com.example.security.productdetail;
+package com.example.security.source.repo;
 
+import com.example.security.source.entity.ProductDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

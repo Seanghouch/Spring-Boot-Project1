@@ -1,7 +1,7 @@
 package com.example.security.mapper.impl;
 
 import com.example.security.mapper.Mapper;
-import com.example.security.product.Product;
+import com.example.security.source.entity.Product;
 import com.example.security.product.ProductDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

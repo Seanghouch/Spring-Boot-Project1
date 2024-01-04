@@ -1,5 +1,7 @@
-package com.example.security.productdetail;
+package com.example.security.service;
 
+import com.example.security.source.entity.ProductDetail;
+import com.example.security.source.repo.ProductDetailRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,9 @@ public class ProductDetailService {
         return productDetailRepo.findAll(pageable);
     }
 
-    public List<ProductDetail> getByProductId(Long productId) {
+    public Object getByProductId(Long productId) {
         return productDetailRepo.findByProductId(productId);
+
     }
 
 }

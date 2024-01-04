@@ -1,11 +1,9 @@
 package com.example.security.dto.response;
 
 import com.example.security.mapper.impl.ObjectConverter;
-import com.example.security.productdetail.ProductDetail;
-import com.example.security.productdetail.ProductDetailDTO;
+import com.example.security.source.entity.ProductDetail;
 import com.example.security.core.CoreBase;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.Data;
 

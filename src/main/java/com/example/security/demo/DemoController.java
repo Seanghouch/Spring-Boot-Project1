@@ -1,6 +1,6 @@
 package com.example.security.demo;
 
-import com.example.security.product.Product;
+import com.example.security.source.entity.Product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;

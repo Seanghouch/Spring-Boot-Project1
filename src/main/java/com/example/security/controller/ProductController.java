@@ -1,8 +1,10 @@
-package com.example.security.product;
+package com.example.security.controller;
 
 import com.example.security.dto.request.ProductRequest;
 import com.example.security.dto.request.ListRequest;
 import com.example.security.dto.response.ResponseData;
+import com.example.security.service.ProductService;
+import com.example.security.source.entity.Product;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,11 +1,10 @@
 package com.example.security.dto.request;
 
-import com.example.security.productdetail.ProductDetail;
+import com.example.security.source.entity.ProductDetail;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data

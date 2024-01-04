@@ -1,13 +1,15 @@
-package com.example.security.product;
+package com.example.security.service;
 
 import com.example.security.dto.request.ListRequest;
 import com.example.security.dto.request.ProductRequest;
 import com.example.security.dto.response.*;
 import com.example.security.mapper.impl.ObjectConverter;
-import com.example.security.productdetail.ProductDetail;
-import com.example.security.productdetail.ProductDetailRepo;
+import com.example.security.source.entity.Product;
+import com.example.security.source.entity.ProductDetail;
+import com.example.security.source.repo.ProductDetailRepo;
 import com.example.security.service.BaseService;
 import com.example.security.service.FilterSpecification;
+import com.example.security.source.repo.ProductRepo;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

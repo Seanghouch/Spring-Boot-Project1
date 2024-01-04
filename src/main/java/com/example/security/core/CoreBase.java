@@ -1,6 +1,6 @@
 package com.example.security.core;
 
-import com.example.security.productdetail.ProductDetailRepo;
+import com.example.security.source.repo.ProductDetailRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
