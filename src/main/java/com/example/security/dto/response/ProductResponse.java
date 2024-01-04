@@ -1,6 +1,6 @@
 package com.example.security.dto.response;
 
-import com.example.security.mapper.impl.ObjectConverter;
+import com.example.security.component.ObjectConverter;
 import com.example.security.source.entity.ProductDetail;
 import com.example.security.core.CoreBase;
 import com.fasterxml.jackson.annotation.JsonCreator;

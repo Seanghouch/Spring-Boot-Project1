@@ -1,8 +1,8 @@
 package com.example.security.auth;
 
-import com.example.security.user.Role;
-import com.example.security.user.User;
-import com.example.security.user.UserRepository;
+import com.example.security.source.enums.RoleEnum;
+import com.example.security.source.entity.User;
+import com.example.security.source.repo.UserRepo;
 import com.example.security.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final UserRepository userRepository;
+    private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -25,9 +25,9 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .roleEnum(RoleEnum.USER)
                 .build();
-        userRepository.save(user);
+        userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -41,7 +41,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var user = userRepository.findByEmail(request.getEmail())
+        var user = userRepo.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var expiration = jwtService.getExpirationDate(jwtToken);

@@ -1,6 +1,6 @@
 package com.example.security.auditing;
 
-import com.example.security.user.User;
+import com.example.security.source.entity.User;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

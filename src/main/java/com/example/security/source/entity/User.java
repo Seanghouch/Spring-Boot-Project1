@@ -1,5 +1,6 @@
-package com.example.security.user;
+package com.example.security.source.entity;
 
+import com.example.security.source.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,11 +30,11 @@ public class User implements UserDetails{
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private RoleEnum roleEnum;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(roleEnum.name()));
     }
 
     @Override
