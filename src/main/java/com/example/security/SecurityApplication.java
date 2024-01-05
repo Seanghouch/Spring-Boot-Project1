@@ -24,10 +24,6 @@ import java.util.stream.Stream;
 public class SecurityApplication {
 
 	public static void main(String[] args) {
-
-		LocalDateTime ldt = LocalDateTime.parse("2017-02-02 08:59:12", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		System.out.println(ldt);
-
 		SpringApplication.run(SecurityApplication.class, args);
 		int availableProcessor = Runtime.getRuntime().availableProcessors();
 		System.out.println("Available Processor:" + availableProcessor);

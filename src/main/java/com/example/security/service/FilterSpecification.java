@@ -1,6 +1,6 @@
 package com.example.security.service;
 
-import com.example.security.core.ConvertDateTime;
+import com.example.security.component.ConvertDateTime;
 import com.example.security.dto.request.FilterPaging;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;

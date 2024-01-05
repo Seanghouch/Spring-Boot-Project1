@@ -9,10 +9,10 @@ import com.example.security.source.entity.ProductDetail;
 import com.example.security.source.repo.ProductDetailRepo;
 import com.example.security.source.repo.ProductRepo;
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,57 +23,22 @@ import java.util.Optional;
 
 @Service
 public class ProductService extends BaseService {
+    @Autowired
+    private ProductRepo productRepo;
+    @Autowired
+    private ProductDetailRepo productDetailRepo;
 
-    private final ProductRepo productRepo;
-    private final ProductDetailRepo productDetailRepo;
-
-    private final FilterSpecification<Product> productFilterSpecification;
-
-    public ProductService(ProductRepo productRepo, ProductDetailRepo productDetailRepo, FilterSpecification<Product> productFilterSpecification) {
-        this.productRepo = productRepo;
-        this.productDetailRepo = productDetailRepo;
-        this.productFilterSpecification = productFilterSpecification;
-    }
-
-    public Page<Product> findAll(Pageable pageable){
-        return productRepo.findAll(pageable);
-    }
-
-    public Object list() {
-        List<Product> product = productRepo.findAll();
-        Object data;
-        if (!product.isEmpty()){
-            data = ObjectConverter.convertArrayToArrayObject(product, new TypeReference<List<ProductResponse>>() {});
-        }else{
-            data = "Data not found.";
-        }
-        return new ResponseData(200, data, null);
-    }
-
-    public Object getProductById(Long id) {
-        if (!isExists(id)){
-            return new ResponseData(404, "", "This request id not found");
-        }
-        Object product = productRepo.findByProductId(id).orElseGet(Product::new);
-        System.out.println(product);
-        Object data = ObjectConverter.convertArrayToArrayObject(product, new TypeReference<ProductResponse>() {});
-        System.out.println(data);
-        return new ResponseData(200, data, null);
-    }
-
-    public Object getProductByIds(List<Long> ids) {
-        List<Product> product = productRepo.findByProductIds(ids);
-        Object data;
-        if (!product.isEmpty()){
-            data = ObjectConverter.convertArrayToArrayObject(product, new TypeReference<List<ProductResponse>>() {});
-        }else{
-            data = "data not found.";
-        }
-        return new ResponseData(200, data, null);
+    public Object list(ListRequest request) {
+        Pageable pageable = getPage(request);
+        Specification<Product> filter = filterColumn(request);
+        Page<Product> list = productRepo.findAll(filter, pageable);
+        ListResponse data = new ListResponse(list.getContent(), list.getTotalElements());
+        data.setList(ObjectConverter.convertArrayToArrayObject(data.getList(), new TypeReference<List<ProductResponse>>(){}));
+        return data;
     }
 
     @Transactional(rollbackFor = {ResponseStatusException.class, Exception.class})
-    public Object saveProduct(ProductRequest request) {
+    public Object save(ProductRequest request) {
         if (request.getProductDetail().isEmpty()){
             return new ResponseData(200, "At least have 1 Product Detail.",null);
         }
@@ -104,10 +69,10 @@ public class ProductService extends BaseService {
     @Transactional(rollbackFor = {ResponseStatusException.class, Exception.class})
     public Object update(ProductRequest request) {
         if(!isExists(request.getProductId())){
-            return ResponseEntity.ok(new ResponseData(203, "", "This request id not found."));
+            return "This request id not found.";
         }
         if (request.getProductDetail().isEmpty()){
-            return new ResponseData(200, "At least have 1 Product Detail.",null);
+            return "Update data error, At least have 1 Product Detail.";
         }
         Optional<Product> product = productRepo.findByProductId(request.getProductId());
         if (product.isPresent()){
@@ -120,7 +85,7 @@ public class ProductService extends BaseService {
             this.updateProductDetail(request.getProductId(), request.getProductDetail());
             return ObjectConverter.convertArrayToArrayObject(existingProduct, new TypeReference<ProductResponse>() {});
         }else {
-            return new ResponseData(200, "No data for update",null);
+            return "No data for update";
         }
     }
 
@@ -142,21 +107,15 @@ public class ProductService extends BaseService {
             activeId.add(detail.getProductDetailId());
             i++;
         }
-
         productDetailRepo.deleteByProductDetailIdNotIn(activeId, productId);
+    }
+
+    public Object delete(){
+        return null;
     }
 
     public boolean isExists(Long productId) {
         return productRepo.existsByProductId(productId);
-    }
-
-    public Object show(ListRequest request) {
-        Pageable pageable = getPage(request);
-        Specification<Product> filter = filterColumn(request);
-        Page<Product> list = productRepo.findAll(filter, pageable);
-        ListResponse data = new ListResponse(list.getContent(), list.getTotalElements());
-        data.setList(ObjectConverter.convertArrayToArrayObject(data.getList(), new TypeReference<List<ProductResponse>>(){}));
-        return data;
     }
 
 }

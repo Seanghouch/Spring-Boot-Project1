@@ -1,6 +1,6 @@
 package com.example.security.source.enums;
 
-public enum RoleEnum {
+public enum Role {
 
     USER,
     AMIN

@@ -1,4 +1,4 @@
-package com.example.security.dto.validation;
+package com.example.security.component;
 
 import com.example.security.dto.response.ResponseData;
 import io.jsonwebtoken.ExpiredJwtException;
