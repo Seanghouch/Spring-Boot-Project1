@@ -20,4 +20,3 @@ services:
     environment:
       ENV_DOCKER_REGISTRY_HOST: docker-registry
       ENV_DOCKER_REGISTRY_PORT: 5000
-
