@@ -13,5 +13,7 @@ services:
     ports:
       - "5432:5432"
     restart: always
+    volumes:
+      - ./volume:/var/lib/postgres
     environment:
       POSTGRES_PASSWORD: 12345

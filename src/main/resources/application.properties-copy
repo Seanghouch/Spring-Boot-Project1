@@ -16,3 +16,24 @@ jwt.token.expiration=24
 # jwt.secret=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
 jwt.secret=1231Y72ha223DJ21U31IU123II2ASI1273712IQ6KW5EJ12Y371UJ1JE6WH2RY17238712IKD56AAU8712
 authentication.header.start.with=houch
+
+### SQL Server
+spring.datasource.url=jdbc:sqlserver://10.20.10.111;databaseName=jwt_security;encrypt=true;trustServerCertificate=true
+#spring.datasource.url=jdbc:postgresql://localhost:5432/jwt_security?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+# spring.datasource.url=jdbc:postgresql://10.20.60.174:5432/jwt_security?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+# server.port=8181
+server.error.include-message=always
+spring.datasource.username=sa
+spring.datasource.password=B@2021#@!
+#spring.jpa.database-platform=org.hibernate.dialect.PostgresPlusDialect
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+# spring.datasource.logging.level.org.hibernate.SQL=DEBUG
+
+# expiration in calculate in hour
+jwt.token.expiration=24
+# jwt.secret=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+jwt.secret=1231Y72ha223DJ21U31IU123II2ASI1273712IQ6KW5EJ12Y371UJ1JE6WH2RY17238712IKD56AAU8712
+authentication.header.start.with=houch
