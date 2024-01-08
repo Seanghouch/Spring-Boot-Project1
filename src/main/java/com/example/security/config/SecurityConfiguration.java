@@ -1,5 +1,6 @@
 package com.example.security.config;
 
+import com.example.security.source.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +30,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/v1/auth/**").permitAll()
 //                        .requestMatchers("/api/v1/demo-controller").permitAll()
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/admin/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
 //                        .requestMatchers("/").hasRole("SUPER_ADMIN")
                         .anyRequest()
                         .authenticated()

@@ -1,8 +1,13 @@
 package com.example.security.source.enums;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public enum Role {
 
     USER,
-    AMIN
+    ADMIN,
+    MANAGER
+    ;
 
 }
