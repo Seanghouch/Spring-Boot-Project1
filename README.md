@@ -198,4 +198,4 @@ curl -X GET http://{ip-docker-registry}:5000/v2/_catalog
 ````
 http://localhost:8080
 ````
-# THANK YOU!
+# <center>THANK YOU!</center>
