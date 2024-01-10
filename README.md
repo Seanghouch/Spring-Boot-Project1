@@ -1,4 +1,4 @@
-# Introduction 1
+# Introduction
 
 1. Build your own docker registry
 2. Build docker image
@@ -131,7 +131,7 @@ Before push image to docker registry u need to config insecure-registries
 
 2. if your local machine is linux, you can follow step as below:
    - vim /etc/docker/daemon.json
-   - Add "insecure-registries": ["ip-docker-registry:5000"]
+   - Add "insecure-registries": ["{ip-docker-registry}:5000"]
    - Save and run command restart docker
 ````
 sudo systemctl restart docker
