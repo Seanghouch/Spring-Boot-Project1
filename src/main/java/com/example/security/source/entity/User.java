@@ -1,39 +1,52 @@
 package com.example.security.source.entity;
 
+import com.example.security.core.BaseEntity;
+import com.example.security.core.CoreBase;
 import com.example.security.source.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "_user")
-public class User implements UserDetails{
+public class User extends BaseEntity implements UserDetails{
 
     @Id
-    @GeneratedValue
-    private Integer id;
-    private String firstname;
-    private String lastname;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+    private String firstName;
+    private String lastName;
+    private String userName;
     private String email;
     private String password;
+    private String imageUrl;
+    private Boolean isActive;
+    private Boolean isForceResetPassword;
+    private Boolean isBuildIn;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+//        var authorities = CoreBase.roleRepo.findAll()
+//                .stream()
+//                .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
+//                .toList();
+//        authorities.add(new SimpleGrantedAuthority(this.userName));
+//        return authorities;
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 

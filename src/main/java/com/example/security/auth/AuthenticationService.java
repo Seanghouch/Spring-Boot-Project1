@@ -8,6 +8,7 @@ import com.example.security.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,28 +32,34 @@ public class AuthenticationService {
             return new AuthenticationResponse("this email already registered.", ConvertDateTime.convertDateToLocalDateTime(new Date().toString()));
         }
         var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
+                .firstName(request.getFirstname())
+                .lastName(request.getLastname())
+                .userName(request.getUserName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .imageUrl(request.getImageUrl())
+                .isActive(request.getIsActive())
+                .isForceResetPassword(request.getIsForceResetPassword())
+                .isBuildIn(false)
                 .role(Role.USER)
                 .build();
         userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
+        var expiration = jwtService.getExpirationDate(jwtToken);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .expiration(ConvertDateTime.convertDateToLocalDateTime(expiration.toString()))
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws UsernameNotFoundException{
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
-        var user = userRepo.findByEmail(request.getEmail())
-                .orElseThrow();
+        var user = userRepo.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var expiration = jwtService.getExpirationDate(jwtToken);
         return AuthenticationResponse.builder()

@@ -176,6 +176,14 @@ Noted: if you have other local machine or your team work want to pull from that 
    - Add "insecure-registries": ["ip-docker-registry:5000"]
    - Save and run command restart docker
 ````
+Run container
+````
+sudo docker run -it -d --restart always -p 8181:8080 --name spring-boot {your-image-name}
+````
+Update container start, when docker start up.
+````
+sudo docker update --restart always {your-container-id}
+````
 ### 5. How to delete docker repository in docker registry
 Before delete I want to remind you, that we have create folder in docker registry,<br>
 we have created **/home/{user-name}/workspace/docker-registry** <br>

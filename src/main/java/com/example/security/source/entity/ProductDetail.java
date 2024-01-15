@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class ProductDetail {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productDetailId;
     private String uom;
     private Double unitPrice;

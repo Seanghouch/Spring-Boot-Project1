@@ -4,21 +4,22 @@ import com.example.security.dto.request.ProductRequest;
 import com.example.security.dto.request.ListRequest;
 import com.example.security.dto.response.ResponseData;
 import com.example.security.service.ProductService;
-import com.example.security.source.enums.Role;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1/admin/products")
+@RequestMapping("/api/v1/products")
+@Slf4j
 public class ProductController {
     @Autowired
     private ProductService productService;
+
 
     @PostMapping(headers = "action=list")
     public ResponseEntity<Object> list(@Valid @RequestBody ListRequest request) throws Exception{

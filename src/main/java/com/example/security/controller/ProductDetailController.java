@@ -24,7 +24,6 @@ public class ProductDetailController {
         return productDetailService.findAll(pageable);
     }
 
-
     @GetMapping("/{productId}")
     public ResponseEntity<Object> getProductDetailByProductId(@PathVariable("productId") Long productId){
         Object data = productDetailService.getByProductId(productId);

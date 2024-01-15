@@ -16,7 +16,7 @@ import lombok.*;
 public class Product extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     private String productCode;
     private String productNameEn;
