@@ -36,5 +36,4 @@ public abstract class BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateDate;
 
-
 }
