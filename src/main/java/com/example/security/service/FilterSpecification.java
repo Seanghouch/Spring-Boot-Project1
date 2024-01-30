@@ -95,7 +95,7 @@ public class FilterSpecification<T> {
                         break;
 
                     default:
-                        throw new IllegalStateException("Unexpected value: ");
+                        throw new IllegalStateException("Operation unexpected value: ");
                 }
             }
             if (Objects.equals(filterType.toUpperCase(), "OR")){

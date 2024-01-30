@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.view.RedirectView;
+//import org.telegram.telegrambots.meta.TelegramBotsApi;
+//import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+//import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -34,6 +37,14 @@ public class SecurityApplication {
 		testThreadPool();
 		initialData();
 		new RedirectView("../../resource/static/index.html");
+
+//		try {
+//			TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+//			botsApi.registerBot(new TelegramBot());
+//		} catch (TelegramApiException e){
+//			e.printStackTrace();
+//		}
+
 	}
 	static void initialData(){
 		var user = CoreBase.userRepo.findByEmail("super-admin@gmail.com");

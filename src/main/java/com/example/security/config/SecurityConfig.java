@@ -30,6 +30,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/test/**").permitAll()
                         .requestMatchers("/api/v1/restclient/**").permitAll()
                         .requestMatchers("/api/v1/notification/**").permitAll()
+                        .requestMatchers("/api/v1/telegram/**").permitAll()
+                        .requestMatchers("/api/v1/send-email").permitAll()
 //                        .requestMatchers("/api/v1/demo-controller").permitAll()
 //                        .requestMatchers("/api/v1/admin/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
 //                        .requestMatchers("/").hasRole("SUPER_ADMIN")
